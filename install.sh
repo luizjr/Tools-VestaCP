@@ -13,9 +13,12 @@ echo ' 2 -> Cancelar'
 read opcao
 
 if [ "$opcao" -eq 1 ] then
-	if [ ! -d "/usr/local/scripts" ]; do
-		mkdir /usr/local/scripts
-	fi
+
+if [[ ! -e /usr/local/scripts ]]; then
+    mkdir /usr/local/scripts
+elif [[ ! -d $dir ]]; then
+    echo "$dir already exists but is not a directory" 1>&2
+fi
 
 	cd /usr/local/scripts
 
