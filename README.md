@@ -3,6 +3,7 @@
 ## Configurando Tarefa no VestaCP Panel
 Acesse seu painel como o usuário admin https://server.domain.com:8083/add/cron/
 ``cd /usr/local/scripts && sudo ./filemanager.sh && cd ~/``
+Configurei minha Tarefa para rodar à cada 10 minutos, você pode colocar para um intervalo de sua preferência.
 
 ##Criando script
 ###Faça login no ssh como root * (Obrigatório)
