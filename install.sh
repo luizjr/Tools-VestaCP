@@ -74,7 +74,7 @@ chown admin:admin /usr/local/scripts/filemanager.sh
 sleep 1
 
 # Verificando sudoers.d
-sudoers="admin   ALL=NOPASSWD:/usr/local/scripts/*"
+permission="admin   ALL=NOPASSWD:/usr/local/scripts/*"
 
 if grep -Fxq "$permission" /etc/sudoers.d/admin
 then
