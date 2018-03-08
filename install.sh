@@ -5,18 +5,16 @@
 
 clear
 
-echo 'opções'
+echo 'Bem Vindo à ativação do FileManager do VestaCP'
 echo '======'
-echo '< 1 > -> Ativar FileManager'
-echo '< 2 > -> Cancelar'
+echo ' 1 -> Ativar FileManager'
+echo ' 2 -> Cancelar'
 
 read opcao
 
-if [ "$opcao" -eq 1 ]
-then
-	if [ ! -d "/usr/local/scripts" ];
-	then
-		cd /usr/local/scripts
+if [ "$opcao" -eq 1 ] then
+	if [ ! -d "/usr/local/scripts" ]; [ cd /usr/local/scripts ] then
+		echo 'Vamos começar a ativação'
 	elif
 		mkdir /usr/local/scripts
 		cd /usr/local/scripts
