@@ -35,8 +35,15 @@ else
 fi
 
 echo "Trabalhando na ativação"
-git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
-cd filemanager-vestacp
+if [ -d /usr/local/scripts/filemanager-vestacp ]
+then
+	rm -rf /usr/local/scripts/filemanager-vestacp
+	echo "Removendo pasta para poder começar o clone do git"
+else
+	git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
+	cd filemanager-vestacp
+fi
+
 
 # Verificando se já tem FILEMANAGER_KEY se não tiver adiciona linha
 a="FILEMANAGER_KEY=''"
