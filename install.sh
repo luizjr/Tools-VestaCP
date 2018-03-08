@@ -35,7 +35,7 @@ else
 fi
 
 echo "Trabalhando na Ativação..."
-sleep 5
+sleep 2
 
 if [ -d /usr/local/scripts/filemanager-vestacp ]
 then
@@ -47,7 +47,7 @@ else
 	git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
 	cd filemanager-vestacp
 fi
-
+sleep 1
 
 # Verificando se já tem FILEMANAGER_KEY se não tiver adiciona linha
 a="FILEMANAGER_KEY=''"
@@ -71,14 +71,16 @@ cp filemanager.sh /usr/local/scripts/
 chmod a+x /usr/local/scripts/filemanager.sh
 chown admin:admin /usr/local/scripts/filemanager.sh
 
+sleep 1
+
 # Verificando sudoers.d
 sudoers="admin   ALL=NOPASSWD:/usr/local/scripts/*"
 
-if grep -Fxq "$sudoers" /etc/sudoers.d/admin
+if grep -Fxq "$permission" /etc/sudoers.d/admin
 then
 # code if found
 	echo "Arquivo de sudoers já configurado"
-	sed -i -e "s/$sudoers/$sudoers/g" /etc/sudoers.d/admin
+	sed -i -e "s/$permission/$permission/g" /etc/sudoers.d/admin
 else
 	echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
 fi
