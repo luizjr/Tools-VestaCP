@@ -13,9 +13,12 @@ echo ' 2 -> Cancelar'
 read opcao
 
 if [ "$opcao" -eq 1 ] then
-	echo 'Vamos começar a ativação '
+	echo "Vamos começar a ativação"
 elif [ "$opcao" -eq 2 ] then
 	echo "Cancelando a ativação..."
+	exit
+else
+	echo "Opção inválida"
 	exit
 fi
 
