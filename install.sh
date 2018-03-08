@@ -61,6 +61,7 @@ sudoers="admin   ALL=NOPASSWD:/usr/local/scripts/*"
 if grep -Fxq "$sudoers" /usr/local/vesta/conf/vesta.conf
 then
 # code if found
+	echo "Sudoers já configurado"
 else
 	echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
 fi
