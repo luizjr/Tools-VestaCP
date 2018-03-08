@@ -80,7 +80,7 @@ if grep -Fxq "$permission" /etc/sudoers.d/admin
 then
 # code if found
 	echo "Arquivo de sudoers já configurado"
-	sed -i -e "s/$permission/$permission/g" /etc/sudoers.d/admin
+	#sed -i -e "s/$permission/$permission/g" /etc/sudoers.d/admin
 else
 	echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
 fi
