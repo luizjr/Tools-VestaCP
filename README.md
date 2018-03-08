@@ -1,10 +1,11 @@
 # VestaCP FileManager Free
 
 ## Configurando Tarefa no VestaCP Panel
+Acesse seu painel como o usuário admin https://server.domain.com:8083/add/cron/
 ``cd /usr/local/scripts && sudo ./filemanager.sh && cd ~/``
 
 ##Criando script
-####Faça login no ssh como root * (Obrigatório)
+###Faça login no ssh como root * (Obrigatório)
 ``ssh root@your.server``
 
 ## Instalação automática
