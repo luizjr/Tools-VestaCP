@@ -18,7 +18,9 @@ if [ "$opcao" -eq 1 ] then
 		cd /usr/local/scripts
 	then
 		echo 'Vamos começar a ativação'
-	elif [ mkdir /usr/local/scripts && cd /usr/local/scripts ] then
+	elif do
+		mkdir /usr/local/scripts && cd /usr/local/scripts
+		then
 		echo 'Vamos começar a ativação 2'
 	fi
 	echo 'Vamos começar a ativação ' && git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git && cd filemanager-vestacp
