@@ -26,19 +26,23 @@ fi
 if [ -d /usr/local/scripts ]
 then
 	cd /usr/local/scripts
-	echo "Entrando na pasta já existente"
+	echo "Entrando na pasta de scripts existente"
 else
 	mkdir /usr/local/scripts
 	cd /usr/local/scripts
-	echo "diretório inexistente"
-	exit
+	sleep 3
+	echo "Criando pasta para o script..."
 fi
 
-echo "Trabalhando na ativação"
+echo "Trabalhando na Ativação..."
+sleep 5
+
 if [ -d /usr/local/scripts/filemanager-vestacp ]
 then
 	rm -rf /usr/local/scripts/filemanager-vestacp
 	echo "Removendo pasta para poder começar o clone do git"
+	git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
+	cd filemanager-vestacp
 else
 	git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
 	cd filemanager-vestacp
