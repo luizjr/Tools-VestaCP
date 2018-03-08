@@ -13,7 +13,7 @@ echo ' 2 -> Cancelar'
 read opcao
 
 if [ "$opcao" -eq 1 ] then
-	if [ ! -d "/usr/local/scripts" ]; then
+	if [ ! -d "/usr/local/scripts" ]; do
 		mkdir /usr/local/scripts
 	fi
 
