@@ -91,5 +91,5 @@ rm -rf filemanager-vestacp
 echo "Ativado com Sucesso!"
 
 # Saindo
-sleep 3
+sleep 2
 exit 2
