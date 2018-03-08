@@ -30,8 +30,7 @@ if [ "$opcao" -eq 1 ] then
 	cd ..
 	rm -rf filemanager-vestacp
 
-elif [ "$opcao" -eq 2 ]
-then
+elif [ "$opcao" -eq 2 ] then
 	echo "Cancelando a ativação..."
 	exit
 fi
