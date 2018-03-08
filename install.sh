@@ -56,7 +56,7 @@ b="FILEMANAGER_KEY='ILOVEREO'"
 if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 then
 # code if found
-sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+	sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
 else
 	echo "FILEMANAGER_KEY=''" >> /usr/local/vesta/conf/vesta.conf
 fi
@@ -72,13 +72,17 @@ sudoers="admin   ALL=NOPASSWD:/usr/local/scripts/*"
 if grep -Fxq "$sudoers" /usr/local/vesta/conf/vesta.conf
 then
 # code if found
-	echo "Sudoers já configurado"
+	echo "Arquivo de sudoers já configurado"
+	sed -i -e "s/$sudoers/$sudoers/g" /usr/local/vesta/conf/vesta.conf
 else
 	echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
 fi
 
+# Limpando arquivos da ativação
 cd ..
 rm -rf filemanager-vestacp
 echo "Ativado com Sucesso!"
-sleep 5
+
+# Saindo
+sleep 3
 exit 2
