@@ -16,7 +16,8 @@ if [ "$opcao" -eq 1 ]; then
 	echo "Vamos começar a ativação"
 elif [ "$opcao" -eq 2 ]; then
 	echo "Cancelando a ativação..."
-	exit
+	sleep 5
+	exit 2
 else
 	echo "Opção inválida"
 	exit
