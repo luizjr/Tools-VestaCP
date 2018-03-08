@@ -10,5 +10,4 @@ if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 then
 # code if found
 sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-
 fi

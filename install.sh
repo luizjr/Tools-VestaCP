@@ -37,7 +37,20 @@ fi
 echo "Trabalhando na ativação"
 git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
 cd filemanager-vestacp
-echo "FILEMANAGER_KEY=''" >> /usr/local/vesta/conf/vesta.conf
+
+# Verificando se já tem FILEMANAGER_KEY se não tiver adiciona linha
+a="FILEMANAGER_KEY=''"
+b="FILEMANAGER_KEY='ILOVEREO'"
+
+if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+then
+# code if found
+sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+else
+	echo "FILEMANAGER_KEY=''" >> /usr/local/vesta/conf/vesta.conf
+fi
+
+# Copiando para a pasta de scripts
 cp filemanager.sh /usr/local/scripts/
 chmod a+x /usr/local/scripts/filemanager.sh
 chown admin:admin /usr/local/scripts/filemanager.sh
