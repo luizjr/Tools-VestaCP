@@ -3,19 +3,21 @@
 #author Luiz Jr
 #created 10/03/2018
 
-# Iniciando instalação
-mkdir /usr/local/scripts/
-cd /usr/local/scripts/
+clear
 
-# Copiando este repositório
-git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
-cd filemanager-vestacp
+echo 'opções'
+echo '======'
+echo '< 1 > -> Ativar FileManager'
+echo '< 2 > -> Cancelar'
 
-# Copiando script para dentro do diretório
-echo "FILEMANAGER_KEY=''" >> /usr/local/vesta/conf/vesta.conf
-cp filemanager.sh /usr/local/scripts/
-chmod a+x /usr/local/scripts/filemanager.sh
-chown admin:admin /usr/local/scripts/filemanager.sh && echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
+read opcao
 
-# Limpando instalação
-cd .. && rm -rf filemanager-vestacp
+if [ "$opcao" -eq 1 ]
+then
+	echo 'Vamos começar a ativação ' && mkdir /usr/local/scripts/ && cd /usr/local/scripts/ && git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git && cd filemanager-vestacp && echo "FILEMANAGER_KEY=''" >> /usr/local/vesta/conf/vesta.conf && cp filemanager.sh /usr/local/scripts/ && chmod a+x /usr/local/scripts/filemanager.sh && chown admin:admin /usr/local/scripts/filemanager.sh && echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin && cd .. && rm -rf filemanager-vestacp
+
+elif [ "$opcao" -eq 2 ]
+then
+	echo "Cancelando a ativação..."
+	exit
+fi
