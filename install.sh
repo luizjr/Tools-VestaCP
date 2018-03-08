@@ -24,13 +24,15 @@ fi
 
 if [ -d /usr/local/scripts ]
 then
-echo "diretório válido"
+	cd /usr/local/scripts
+	echo "Entrando na pasta já existente"
 else
-echo "diretório inexistente"
-exit
+	mkdir /usr/local/scripts
+	cd /usr/local/scripts
+	echo "diretório inexistente"
+	exit
 fi
 
-cd /usr/local/scripts
 git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
 cd filemanager-vestacp
 echo "FILEMANAGER_KEY=''" >> /usr/local/vesta/conf/vesta.conf
