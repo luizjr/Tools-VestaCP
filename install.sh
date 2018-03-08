@@ -57,6 +57,11 @@ if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 then
 # code if found
 	sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+
+elif grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
+then
+	sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
+
 else
 	echo "FILEMANAGER_KEY=''" >> /usr/local/vesta/conf/vesta.conf
 fi
@@ -69,11 +74,11 @@ chown admin:admin /usr/local/scripts/filemanager.sh
 # Verificando sudoers.d
 sudoers="admin   ALL=NOPASSWD:/usr/local/scripts/*"
 
-if grep -Fxq "$sudoers" /usr/local/vesta/conf/vesta.conf
+if grep -Fxq "$sudoers" /etc/sudoers.d/admin
 then
 # code if found
 	echo "Arquivo de sudoers já configurado"
-	sed -i -e "s/$sudoers/$sudoers/g" /usr/local/vesta/conf/vesta.conf
+	sed -i -e "s/$sudoers/$sudoers/g" /etc/sudoers.d/admin
 else
 	echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
 fi
