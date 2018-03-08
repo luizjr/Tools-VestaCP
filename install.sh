@@ -54,7 +54,17 @@ fi
 cp filemanager.sh /usr/local/scripts/
 chmod a+x /usr/local/scripts/filemanager.sh
 chown admin:admin /usr/local/scripts/filemanager.sh
-echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
+
+# Verificando sudoers.d
+sudoers="admin   ALL=NOPASSWD:/usr/local/scripts/*"
+
+if grep -Fxq "$sudoers" /usr/local/vesta/conf/vesta.conf
+then
+# code if found
+else
+	echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
+fi
+
 cd ..
 rm -rf filemanager-vestacp
 echo "Ativado com Sucesso!"
