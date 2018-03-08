@@ -1,3 +1,8 @@
+#! /bin/bash
+#created luizjrdeveloper@gmail.com
+#author Luiz Jr
+#created 10/03/2018
+
 # Iniciando instalação
 mkdir /usr/local/scripts/
 cd /usr/local/scripts/
