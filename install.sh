@@ -13,7 +13,10 @@ echo ' 2 -> Cancelar'
 read opcao
 
 if [ "$opcao" -eq 1 ] then
-	if [ ! -d "/usr/local/scripts" ]; [ cd /usr/local/scripts ] then
+	if [ ! -d "/usr/local/scripts" ];
+	do
+		cd /usr/local/scripts
+	then
 		echo 'Vamos começar a ativação'
 	elif [ mkdir /usr/local/scripts && cd /usr/local/scripts ] then
 		echo 'Vamos começar a ativação 2'
