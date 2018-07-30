@@ -97,43 +97,48 @@ elif [ "$opcao" -eq 3 ]; then
 	sleep 1
 	file_vesta_filemanager="/etc/cron.hourly/vesta_filemanager"
 	if [ -f "$file_vesta_filemanager" ]; then
+		echo "Limpando Ativação Anterior..."
 		rm $file_vesta_filemanager
-		echo "
+		echo '
 		#! /bin/bash
 		#created luizjrdeveloper@gmail.com
 		#author Luiz Jr
 		#created 10/03/2018
 
-		a=\"FILEMANAGER_KEY=''\"
-		b=\"FILEMANAGER_KEY='ILOVEREO'\"
+		a="FILEMANAGER_KEY=''"
+		b="FILEMANAGER_KEY='ILOVEREO'"
 
-		if grep -Fxq \"$a\" /usr/local/vesta/conf/vesta.conf
+		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 		then
 		# code if found
-		sed -i -e \"s/$a/$b/g\" /usr/local/vesta/conf/vesta.conf
+			sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+		else
+			echo $b >> /usr/local/vesta/conf/vesta.conf
 		fi
-		" >> $file_vesta_filemanager
+		' >> $file_vesta_filemanager
 		chmod +x $file_vesta_filemanager
 		echo "Ativando FileManager..."
 		bash $file_vesta_filemanager
 		sleep 2
 		echo "FileManager Ativado com Sucesso!"
 	else
-		echo "
+		echo '
 		#! /bin/bash
 		#created luizjrdeveloper@gmail.com
 		#author Luiz Jr
 		#created 10/03/2018
 
-		a=\"FILEMANAGER_KEY=''\"
-		b=\"FILEMANAGER_KEY='ILOVEREO'\"
+		a="FILEMANAGER_KEY=''"
+		b="FILEMANAGER_KEY='ILOVEREO'"
 
-		if grep -Fxq \"$a\" /usr/local/vesta/conf/vesta.conf
+		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 		then
 		# code if found
-		sed -i -e \"s/$a/$b/g\" /usr/local/vesta/conf/vesta.conf
+			sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+		else
+			echo $b >> /usr/local/vesta/conf/vesta.conf
 		fi
-		" >> $file_vesta_filemanager
+		' >> $file_vesta_filemanager
 		chmod +x $file_vesta_filemanager
 		echo "Ativando FileManager..."
 		bash $file_vesta_filemanager
