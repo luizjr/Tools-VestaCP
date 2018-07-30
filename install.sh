@@ -20,15 +20,13 @@ if [ "$opcao" -eq 1 ]; then
 
 elif [ "$opcao" -eq 2 ]; then
 	echo "Iniciando a Instalação do SSL..."
-	sleep 2
-	read -p "Digite o dominio(url) do VestaCP e pressione [ENTER]: " dominio_vesta
 	sleep 1
+	read -p "Digite o Domínio(url) do VestaCP e pressione [ENTER]: " dominio_vesta
 	echo "Emitindo Certificado SSL para o Dominío..."
 	/usr/local/vesta/bin/v-add-letsencrypt-domain admin $dominio_vesta
-	sleep 1
 
 	file_vesta_ssl="/etc/cron.daily/vesta_ssl"
-	if [ -f "$file_vesta_ssl" ];	then
+	if [ -f "$file_vesta_ssl" ]; then
 		echo "Reescrevendo Tarefa Cron"
 		rm $file_vesta_ssl
 		echo '	cert_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.pem"
@@ -60,7 +58,7 @@ elif [ "$opcao" -eq 2 ]; then
 		sleep 2
 		echo "SSL Ativado com Sucesso!"
 	else
-		echo '	cert_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.pem"
+		echo '			cert_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.pem"
 		key_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.key"
 		cert_dst="/usr/local/vesta/ssl/certificate.crt"
 		key_dst="/usr/local/vesta/ssl/certificate.key"
@@ -95,78 +93,59 @@ elif [ "$opcao" -eq 2 ]; then
 
 # Ativacao do FileManager
 elif [ "$opcao" -eq 3 ]; then
-	if [ -d /usr/local/scripts ]
-	then
-		cd /usr/local/scripts
-		echo "Entrando na pasta de scripts existente"
-	else
-		mkdir /usr/local/scripts
-		cd /usr/local/scripts
-		sleep 3
-		echo "Criando pasta para o script..."
-	fi
-
-	echo "Trabalhando na Ativação..."
-	sleep 2
-
-	if [ -d /usr/local/scripts/filemanager-vestacp ]
-	then
-		rm -rf /usr/local/scripts/filemanager-vestacp
-		echo "Removendo pasta para poder começar o clone do git"
-		git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
-		cd filemanager-vestacp
-	else
-		git clone https://github.com/luizjrdeveloper/filemanager-vestacp.git
-		cd filemanager-vestacp
-	fi
+	echo "Iniciando Ativação do FileManager..."
 	sleep 1
+	file_vesta_filemanager="/etc/cron.hourly/vesta_filemanager"
+	if [ -f "$file_vesta_filemanager" ]; then
+		rm $file_vesta_filemanager
+		echo "
+		#! /bin/bash
+		#created luizjrdeveloper@gmail.com
+		#author Luiz Jr
+		#created 10/03/2018
 
-	# Verificando se já tem FILEMANAGER_KEY se não tiver adiciona linha
-	a="FILEMANAGER_KEY=''"
-	b="FILEMANAGER_KEY='ILOVEREO'"
+		a=\"FILEMANAGER_KEY=''\"
+		b=\"FILEMANAGER_KEY='ILOVEREO'\"
 
-	if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
-	then
-		sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-	elif grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
-	then
-		sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
+		if grep -Fxq \"$a\" /usr/local/vesta/conf/vesta.conf
+		then
+		# code if found
+		sed -i -e \"s/$a/$b/g\" /usr/local/vesta/conf/vesta.conf
+		fi
+		" >> $file_vesta_filemanager
+		chmod +x $file_vesta_filemanager
+		echo "Ativando FileManager..."
+		bash $file_vesta_filemanager
+		sleep 2
+		echo "FileManager Ativado com Sucesso!"
 	else
-		echo "FILEMANAGER_KEY=''" >> /usr/local/vesta/conf/vesta.conf
+		echo "
+		#! /bin/bash
+		#created luizjrdeveloper@gmail.com
+		#author Luiz Jr
+		#created 10/03/2018
+
+		a=\"FILEMANAGER_KEY=''\"
+		b=\"FILEMANAGER_KEY='ILOVEREO'\"
+
+		if grep -Fxq \"$a\" /usr/local/vesta/conf/vesta.conf
+		then
+		# code if found
+		sed -i -e \"s/$a/$b/g\" /usr/local/vesta/conf/vesta.conf
+		fi
+		" >> $file_vesta_filemanager
+		chmod +x $file_vesta_filemanager
+		echo "Ativando FileManager..."
+		bash $file_vesta_filemanager
+		sleep 2
+		echo "FileManager Ativado com Sucesso!"
 	fi
-
-	# Copiando para a pasta de scripts
-	cp filemanager.sh /usr/local/scripts/
-	chmod a+x /usr/local/scripts/filemanager.sh
-	chown admin:admin /usr/local/scripts/filemanager.sh
-
-	sleep 1
-
-	# Verificando sudoers.d
-	permission="admin   ALL=NOPASSWD:/usr/local/scripts/*"
-
-	if grep -Fxq "$permission" /etc/sudoers.d/admin
-	then
-	# code if found
-		echo "Arquivo de sudoers já configurado"
-		#sed -i -e "s/$permission/$permission/g" /etc/sudoers.d/admin
-	else
-		echo "admin   ALL=NOPASSWD:/usr/local/scripts/*" >> /etc/sudoers.d/admin
-	fi
-
-	# Limpando arquivos da ativação
-	cd ..
-	rm -rf filemanager-vestacp
-	echo "Ativado com Sucesso!"
-
-	# Saindo
-	sleep 2
-	exit 2
+	exit
 
 elif [ "$opcao" -eq 4 ]; then
 	echo "Cancelando a ativação..."
-	sleep 5
-	exit 2
+	sleep 3
+	exit
 else
 	echo "Opção inválida"
 	exit
