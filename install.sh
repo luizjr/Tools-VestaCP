@@ -12,7 +12,7 @@ echo ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
 echo ' 3 -> Ativar FileManager'
 echo ' 4 -> Cancelar'
 echo 'Escolha a opção e pressione [ENTER]: '
-read -r opcao
+read opcao
 
 if [ "$opcao" -eq 1 ]; then
 	echo "Vamos começar a atualização do php7.0 para o php7.1"
@@ -21,8 +21,7 @@ if [ "$opcao" -eq 1 ]; then
 elif [ "$opcao" -eq 2 ]; then
 	echo "Iniciando a Instalação do SSL..."
 	sleep 2
-	echo -n "Digite o dominio(url) do VestaCP e pressione [ENTER]: "
-	read -r dominio_vesta
+	read -p "Digite o dominio(url) do VestaCP e pressione [ENTER]: " dominio_vesta
 	sleep 1
 	echo "Gerando Certificado SSL para o Dominío..."
 	# /usr/local/vesta/bin/v-add-letsencrypt-domain admin $dominio_vesta
