@@ -115,7 +115,7 @@ if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 then
 # code if found
 	sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-else if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
+elseif grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
 then
 
 else
@@ -139,7 +139,7 @@ if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 then
 # code if found
 	sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-else if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
+elseif grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
 then
 
 else
