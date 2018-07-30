@@ -96,12 +96,12 @@ elif [ "$opcao" -eq 3 ]; then
 	echo "Iniciando Ativação do FileManager..."
 	sleep 1
 	file_vesta_filemanager="/etc/cron.hourly/vesta_filemanager"
+	file_emp = "FILEMANAGER_KEY=''"
+	file_tex = "FILEMANAGER_KEY='ILOVEREO'"
+
 	if [ -f "$file_vesta_filemanager" ]; then
 		echo "Limpando Ativação Anterior..."
 		rm $file_vesta_filemanager
-
-		file_emp = "FILEMANAGER_KEY=''"
-		file_tex = "FILEMANAGER_KEY='ILOVEREO'"
 
 		echo '
 		#! /bin/bash
@@ -126,9 +126,6 @@ elif [ "$opcao" -eq 3 ]; then
 		sleep 2
 		echo "FileManager Ativado com Sucesso!"
 	else
-		file_emp = "FILEMANAGER_KEY=''"
-		file_tex = "FILEMANAGER_KEY='ILOVEREO'"
-
 		echo '
 		#! /bin/bash
 		#created luizjrdeveloper@gmail.com
