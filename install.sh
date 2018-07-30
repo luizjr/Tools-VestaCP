@@ -105,8 +105,8 @@ elif [ "$opcao" -eq 3 ]; then
 		#author Luiz Jr
 		#created 10/03/2018
 
-		a="FILEMANAGER_KEY=''"
-		b="FILEMANAGER_KEY='ILOVEREO'"
+		a="FILEMANAGER_KEY=``"
+		b="FILEMANAGER_KEY=`ILOVEREO`"
 
 		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 		then
@@ -128,8 +128,8 @@ elif [ "$opcao" -eq 3 ]; then
 		#author Luiz Jr
 		#created 10/03/2018
 
-		a="FILEMANAGER_KEY=''"
-		b="FILEMANAGER_KEY='ILOVEREO'"
+		a="FILEMANAGER_KEY=``"
+		b="FILEMANAGER_KEY=`ILOVEREO`"
 
 		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 		then
