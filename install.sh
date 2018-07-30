@@ -103,46 +103,48 @@ elif [ "$opcao" -eq 3 ]; then
 		echo "Limpando Ativação Anterior..."
 		rm $file_vesta_filemanager
 
-		echo '
-		#! /bin/bash
-		#created luizjrdeveloper@gmail.com
-		#author Luiz Jr
-		#created 10/03/2018
+		echo '#! /bin/bash
+#created luizjrdeveloper@gmail.com
+#author Luiz Jr
+#created 10/03/2018
 
-		a="'${file_emp}'"
-		b="'${file_tex}'"
+a="'${file_emp}'"
+b="'${file_tex}'"
 
-		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
-		then
-		# code if found
-			sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-		else
-			echo $b >> /usr/local/vesta/conf/vesta.conf
-		fi
-		' >> $file_vesta_filemanager
+if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+then
+# code if found
+	sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+else if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
+then
+
+else
+	echo $b >> /usr/local/vesta/conf/vesta.conf
+fi' >> $file_vesta_filemanager
 		chmod +x $file_vesta_filemanager
 		echo "Ativando FileManager..."
 		bash $file_vesta_filemanager
 		sleep 2
 		echo "FileManager Ativado com Sucesso!"
 	else
-		echo '
-		#! /bin/bash
-		#created luizjrdeveloper@gmail.com
-		#author Luiz Jr
-		#created 10/03/2018
+		echo '#! /bin/bash
+#created luizjrdeveloper@gmail.com
+#author Luiz Jr
+#created 10/03/2018
 
-		a="'${file_emp}'"
-		b="'${file_tex}'"
+a="'${file_emp}'"
+b="'${file_tex}'"
 
-		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
-		then
-		# code if found
-			sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-		else
-			echo $b >> /usr/local/vesta/conf/vesta.conf
-		fi
-		' >> $file_vesta_filemanager
+if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+then
+# code if found
+	sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+else if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
+then
+
+else
+	echo $b >> /usr/local/vesta/conf/vesta.conf
+fi' >> $file_vesta_filemanager
 		chmod +x $file_vesta_filemanager
 		echo "Ativando FileManager..."
 		bash $file_vesta_filemanager
