@@ -21,7 +21,7 @@ if [ "$opcao" -eq 1 ]; then
 elif [ "$opcao" -eq 2 ]; then
 	echo "Iniciando a Instalação do SSL..."
 	sleep 2
-	printf -n "Digite o dominio(url) do VestaCP e pressione [ENTER]: "
+	echo -n "Digite o dominio(url) do VestaCP e pressione [ENTER]: "
 	read -r dominio_vesta
 	sleep 1
 	echo "Gerando Certificado SSL para o Dominío..."
