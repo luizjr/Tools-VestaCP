@@ -32,14 +32,11 @@ elif [ "$opcao" -eq 2 ]; then
 	then
 		echo "Entrando na pasta de scripts existente"
 		rm /etc/cron.daily/vesta_ssl
-		echo '		cert_src="/home/admin/conf/web/ssl.' >> /etc/cron.daily/vesta_ssl
-		echo $dominio_vesta >> /etc/cron.daily/vesta_ssl
-		echo '.pem"
-		key_src="/home/admin/conf/web/ssl.' >> /etc/cron.daily/vesta_ssl
-		echo $dominio_vesta >> /etc/cron.daily/vesta_ssl
-		echo '.key"
-		cert_dst="/usr/local/vesta/ssl/certificate.crt"
-		key_dst="/usr/local/vesta/ssl/certificate.key"
+		echo "
+		cert_src=\"/home/admin/conf/web/ssl.${dominio_vesta}.pem\"
+		key_src=\"/home/admin/conf/web/ssl.${dominio_vesta}.key\"
+		cert_dst=\"/usr/local/vesta/ssl/certificate.crt\"
+		key_dst=\"/usr/local/vesta/ssl/certificate.key\"
 
 		if ! cmp -s $cert_dst $cert_src
 		then
@@ -53,19 +50,16 @@ elif [ "$opcao" -eq 2 ]; then
 		        # Reiniciando Serviços
 		        service vesta restart &> /dev/null
 		        service exim4 restart &> /dev/null
-		fi' >> /etc/cron.daily/vesta_ssl
+		fi" >> /etc/cron.daily/vesta_ssl
 		chmod +x /etc/cron.daily/vesta_ssl
 		echo "Ativando SSL para o Dominío..."
 		bash /etc/cron.daily/vesta_ssl
 	else
-		echo '		cert_src="/home/admin/conf/web/ssl.' >> /etc/cron.daily/vesta_ssl
-		echo $dominio_vesta >> /etc/cron.daily/vesta_ssl
-		echo '.pem"
-		key_src="/home/admin/conf/web/ssl.' >> /etc/cron.daily/vesta_ssl
-		echo $dominio_vesta >> /etc/cron.daily/vesta_ssl
-		echo '.key"
-		cert_dst="/usr/local/vesta/ssl/certificate.crt"
-		key_dst="/usr/local/vesta/ssl/certificate.key"
+		echo "
+		cert_src=\"/home/admin/conf/web/ssl.${dominio_vesta}.pem\"
+		key_src=\"/home/admin/conf/web/ssl.${dominio_vesta}.key\"
+		cert_dst=\"/usr/local/vesta/ssl/certificate.crt\"
+		key_dst=\"/usr/local/vesta/ssl/certificate.key\"
 
 		if ! cmp -s $cert_dst $cert_src
 		then
@@ -79,7 +73,8 @@ elif [ "$opcao" -eq 2 ]; then
 		        # Reiniciando Serviços
 		        service vesta restart &> /dev/null
 		        service exim4 restart &> /dev/null
-		fi' >> /etc/cron.daily/vesta_ssl
+		fi" >> /etc/cron.daily/vesta_ssl
+		
 		chmod +x /etc/cron.daily/vesta_ssl
 		echo "Ativando SSL para o Dominío..."
 		bash /etc/cron.daily/vesta_ssl
