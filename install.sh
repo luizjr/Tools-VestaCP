@@ -99,14 +99,18 @@ elif [ "$opcao" -eq 3 ]; then
 	if [ -f "$file_vesta_filemanager" ]; then
 		echo "Limpando Ativação Anterior..."
 		rm $file_vesta_filemanager
+
+		file_emp = "FILEMANAGER_KEY=''"
+		file_tex = "FILEMANAGER_KEY='ILOVEREO'"
+
 		echo '
 		#! /bin/bash
 		#created luizjrdeveloper@gmail.com
 		#author Luiz Jr
 		#created 10/03/2018
 
-		a="FILEMANAGER_KEY=``"
-		b="FILEMANAGER_KEY=`ILOVEREO`"
+		a="'${file_emp}'"
+		b="'${file_tex}'"
 
 		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 		then
@@ -122,14 +126,17 @@ elif [ "$opcao" -eq 3 ]; then
 		sleep 2
 		echo "FileManager Ativado com Sucesso!"
 	else
+		file_emp = "FILEMANAGER_KEY=''"
+		file_tex = "FILEMANAGER_KEY='ILOVEREO'"
+
 		echo '
 		#! /bin/bash
 		#created luizjrdeveloper@gmail.com
 		#author Luiz Jr
 		#created 10/03/2018
 
-		a="FILEMANAGER_KEY=``"
-		b="FILEMANAGER_KEY=`ILOVEREO`"
+		a="'${file_emp}'"
+		b="'${file_tex}'"
 
 		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
 		then
