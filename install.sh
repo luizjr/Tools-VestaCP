@@ -28,8 +28,7 @@ elif [ "$opcao" -eq 2 ]; then
 	sleep 1
 
 	file_vesta_ssl="/etc/cron.daily/vesta_ssl"
-	if [ -f "file_vesta_ssl" ]
-	then
+	if [ -f "$file_vesta_ssl" ];	then
 		echo "Reescrevendo Tarefa Cron"
 		rm $file_vesta_ssl
 		echo '	cert_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.pem"
