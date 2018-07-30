@@ -5,13 +5,13 @@
 
 clear
 
-echo 'Bem Vindo à ativação do FileManager do VestaCP'
+echo 'Bem Vindo ao Canivete Suíço do VestaCP'
 echo '======'
 echo ' 1 -> Atualizar php7.0 para php7.1'
 echo ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
 echo ' 3 -> Ativar FileManager'
 echo ' 4 -> Cancelar'
-
+echo 'Escolha a opção e pressione [ENTER]: '
 read opcao
 
 if [ "$opcao" -eq 1 ]; then
@@ -27,28 +27,25 @@ elif [ "$opcao" -eq 2 ]; then
 	echo "Gerando Certificado SSL para o Dominío..."
 	/usr/local/vesta/bin/v-add-letsencrypt-domain admin $dominio_vesta
 	sleep 1
-
-	echo 'cert_src="/home/admin/conf/web/ssl.$dominio_vesta.pem"
-	key_src="/home/admin/conf/web/ssl.$dominio_vesta.key"
+	echo $dominio_vesta
+	echo '
+	cert_src="/home/admin/conf/web/ssl.${dominio_vesta}.pem"
+	key_src="/home/admin/conf/web/ssl.${dominio_vesta}.key"
 	cert_dst="/usr/local/vesta/ssl/certificate.crt"
 	key_dst="/usr/local/vesta/ssl/certificate.key"
 
 	if ! cmp -s $cert_dst $cert_src
 	then
-	        # Copy Certificate
+	        # Copiando Certificado
 	        cp $cert_src $cert_dst
-
-	        # Copy Keyfile
+	        # Copiando Chave
 	        cp $key_src $key_dst
-
-	        # Change Permission
+	        # Aplicando Permissões
 	        chown root:mail $cert_dst
 	        chown root:mail $key_dst
-
-	        # Restart Services
+	        # Reiniciando Serviços
 	        service vesta restart &> /dev/null
 	        service exim4 restart &> /dev/null
-			sleep 1
 	fi' >> /etc/cron.daily/vesta_ssl
 	chmod +x /etc/cron.daily/vesta_ssl
 	echo "Ativando SSL para o Dominío..."
