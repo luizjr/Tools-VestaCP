@@ -28,28 +28,62 @@ elif [ "$opcao" -eq 2 ]; then
 	/usr/local/vesta/bin/v-add-letsencrypt-domain admin $dominio_vesta
 	sleep 1
 	echo $dominio_vesta
-	echo '
-	cert_src="/home/admin/conf/web/ssl.${dominio_vesta}.pem"
-	key_src="/home/admin/conf/web/ssl.${dominio_vesta}.key"
-	cert_dst="/usr/local/vesta/ssl/certificate.crt"
-	key_dst="/usr/local/vesta/ssl/certificate.key"
-
-	if ! cmp -s $cert_dst $cert_src
+	if [ -d /usr/local/scripts ]
 	then
-	        # Copiando Certificado
-	        cp $cert_src $cert_dst
-	        # Copiando Chave
-	        cp $key_src $key_dst
-	        # Aplicando Permissões
-	        chown root:mail $cert_dst
-	        chown root:mail $key_dst
-	        # Reiniciando Serviços
-	        service vesta restart &> /dev/null
-	        service exim4 restart &> /dev/null
-	fi' >> /etc/cron.daily/vesta_ssl
-	chmod +x /etc/cron.daily/vesta_ssl
-	echo "Ativando SSL para o Dominío..."
-	bash /etc/cron.daily/vesta_ssl
+		echo "Entrando na pasta de scripts existente"
+		rm /etc/cron.daily/vesta_ssl
+		echo '		cert_src="/home/admin/conf/web/ssl.' >> /etc/cron.daily/vesta_ssl
+		echo $dominio_vesta >> /etc/cron.daily/vesta_ssl
+		echo '.pem"
+		key_src="/home/admin/conf/web/ssl.' >> /etc/cron.daily/vesta_ssl
+		echo $dominio_vesta >> /etc/cron.daily/vesta_ssl
+		echo '.key"
+		cert_dst="/usr/local/vesta/ssl/certificate.crt"
+		key_dst="/usr/local/vesta/ssl/certificate.key"
+
+		if ! cmp -s $cert_dst $cert_src
+		then
+		        # Copiando Certificado
+		        cp $cert_src $cert_dst
+		        # Copiando Chave
+		        cp $key_src $key_dst
+		        # Aplicando Permissões
+		        chown root:mail $cert_dst
+		        chown root:mail $key_dst
+		        # Reiniciando Serviços
+		        service vesta restart &> /dev/null
+		        service exim4 restart &> /dev/null
+		fi' >> /etc/cron.daily/vesta_ssl
+		chmod +x /etc/cron.daily/vesta_ssl
+		echo "Ativando SSL para o Dominío..."
+		bash /etc/cron.daily/vesta_ssl
+	else
+		echo '		cert_src="/home/admin/conf/web/ssl.' >> /etc/cron.daily/vesta_ssl
+		echo $dominio_vesta >> /etc/cron.daily/vesta_ssl
+		echo '.pem"
+		key_src="/home/admin/conf/web/ssl.' >> /etc/cron.daily/vesta_ssl
+		echo $dominio_vesta >> /etc/cron.daily/vesta_ssl
+		echo '.key"
+		cert_dst="/usr/local/vesta/ssl/certificate.crt"
+		key_dst="/usr/local/vesta/ssl/certificate.key"
+
+		if ! cmp -s $cert_dst $cert_src
+		then
+		        # Copiando Certificado
+		        cp $cert_src $cert_dst
+		        # Copiando Chave
+		        cp $key_src $key_dst
+		        # Aplicando Permissões
+		        chown root:mail $cert_dst
+		        chown root:mail $key_dst
+		        # Reiniciando Serviços
+		        service vesta restart &> /dev/null
+		        service exim4 restart &> /dev/null
+		fi' >> /etc/cron.daily/vesta_ssl
+		chmod +x /etc/cron.daily/vesta_ssl
+		echo "Ativando SSL para o Dominío..."
+		bash /etc/cron.daily/vesta_ssl
+	fi
 	sleep 3
 	exit
 
