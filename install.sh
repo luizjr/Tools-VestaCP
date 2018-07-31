@@ -176,9 +176,9 @@ if [[ -n "$opcao" ]]; then
     	exit 1
 	else
 		echo "Opção inválida"
-		exit 1
+		exit 0
 	fi
 else
 	echo "Opção inválida"
-	exit 1
+	exit 0
 fi
