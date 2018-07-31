@@ -10,7 +10,17 @@ echo '======'
 echo ' 1 -> Atualizar php7.0 para php7.1'
 echo ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
 echo ' 3 -> Ativar FileManager'
-echo ' 4 -> Cancelar'
+echo ' 4 -> Instalar Templates Laravel e ReactJS'
+echo ' 5 -> Sair'
+
+cd /usr/local/vesta/data/templates/web
+git clone https://github.com/errogaht/vesta_templates.git
+cp -R vesta_templates/apache2 .
+cp -R vesta_templates/nginx .
+rm -R vesta_templates
+
+
+echo ' 5 -> Cancelar'
 read -p 'Escolha a opção e pressione [ENTER]: ' opcao
 
 if [[ -n "$opcao" ]]; then
@@ -169,8 +179,16 @@ if [[ -n "$opcao" ]]; then
     		echo "FileManager Ativado com Sucesso!"
     	fi
     	exit 1
-
-    elif [ "$opcao" -eq 4 ]; then
+	elif [ "$opcao" -eq 4 ]; then
+		patch_template="/usr/local/vesta/data/templates/web"
+		git clone https://github.com/luizjrdeveloper/tools-vestacp.git
+		cp -R tools-vestacp/includes/apache2 $patch_template
+		cp -R tools-vestacp/includes/nginx $patch_template
+		rm -R tools-vestacp
+		echo "Templates Instados!"
+    	sleep 2
+    	exit 1
+	elif [ "$opcao" -eq 5 ]; then
     	echo "Cancelando a ativação..."
     	sleep 3
     	exit 1
