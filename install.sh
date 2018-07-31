@@ -13,14 +13,6 @@ echo ' 3 -> Ativar FileManager'
 echo ' 4 -> Instalar Templates Laravel e ReactJS'
 echo ' 5 -> Sair'
 
-cd /usr/local/vesta/data/templates/web
-git clone https://github.com/errogaht/vesta_templates.git
-cp -R vesta_templates/apache2 .
-cp -R vesta_templates/nginx .
-rm -R vesta_templates
-
-
-echo ' 5 -> Cancelar'
 read -p 'Escolha a opção e pressione [ENTER]: ' opcao
 
 if [[ -n "$opcao" ]]; then
