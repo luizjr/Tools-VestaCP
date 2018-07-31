@@ -8,9 +8,9 @@
 
 ## Instalação Manual
 ### Copiando este Repositório
-``git clone https://github.com/luizjrdeveloper/tools-vestacp.git``
-``cd tools-vestacp``
-``bash install.sh``
+``git clone https://github.com/luizjrdeveloper/tools-vestacp.git``  
+``cd tools-vestacp``  
+``bash install.sh``  
 
 ### Limpando instalação
 ``cd .. && rm -rf tools-vestacp``
