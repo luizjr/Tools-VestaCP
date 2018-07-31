@@ -172,8 +172,7 @@ if [[ -n "$opcao" ]]; then
     	fi
     	exit 1
 	elif [ "$opcao" -eq 4 ]; then
-		cd /usr/local/vesta/data/templates/web
-		git clone https://github.com/luizjrdeveloper/tools-vestacp.git
+		cd /usr/local/vesta/data/templates/web && git clone https://github.com/luizjrdeveloper/tools-vestacp.git
 		cp -R tools-vestacp/includes/apache2 .
 		cp -R tools-vestacp/includes/nginx .
 		rm -R tools-vestacp
