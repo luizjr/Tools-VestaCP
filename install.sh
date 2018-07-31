@@ -11,11 +11,22 @@ echo ' 1 -> Atualizar php7.0 para php7.1'
 echo ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
 echo ' 3 -> Ativar FileManager'
 echo ' 4 -> Cancelar'
-echo 'Escolha a opção e pressione [ENTER]: '
-read opcao
+read -p 'Escolha a opção e pressione [ENTER]: ' opcao
 
 if [ "$opcao" -eq 1 ]; then
 	echo "Vamos começar a atualização do php7.0 para o php7.1"
+	sudo apt-get update
+	sudo apt-get install python-software-properties
+	sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+	apt-get update
+	apt-get install php7.1
+	a2dismod php7.0
+	a2enmod php7.1
+	service apache2 restart
+
+	apt-get install php7.1-common php7.1-zip libapache2-mod-php7.1 php7.1-cgi php7.1-cli php7.1-phpdbg php7.1-fpm libphp7.1-embed php7.1-dev php7.1-curl php7.1-gd php7.1-imap php7.1-interbase php7.1-intl php7.1-ldap php7.1-mcrypt php7.1-readline php7.1-odbc php7.1-pgsql php7.1-pspell php7.1-recode php7.1-tidy php7.1-xmlrpc php7.1 php7.1-json php-all-dev php7.1-sybase php7.1-sqlite3 php7.1-mysql php7.1-opcache php7.1-bz2 libapache2-mod-php7.1 php7.1-mbstring php7.1-pdo php7.1-dom
+
+	service apache2 restart
 	exit
 
 elif [ "$opcao" -eq 2 ]; then
