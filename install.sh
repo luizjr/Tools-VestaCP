@@ -173,6 +173,9 @@ elif [ "$opcao" -eq 4 ]; then
 	echo "Cancelando a ativação..."
 	sleep 3
 	exit
+elif [[ -z "$opcao" ]]; then
+   printf '%s\n' "No input entered"
+   exit 1
 else
 	echo "Opção inválida"
 	exit
