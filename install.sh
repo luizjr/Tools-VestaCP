@@ -112,15 +112,17 @@ elif [ "$opcao" -eq 3 ]; then
 		a="'${file_emp}'"
 		b="'${file_tex}'"
 
-		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+		if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
 		then
-		# code if found
-			sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-		elif grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
-		then
-
+			sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
 		else
-			echo $b >> /usr/local/vesta/conf/vesta.conf
+			if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+			then
+			# Encontrou a TAG
+				sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+			else
+				echo $b >> /usr/local/vesta/conf/vesta.conf
+			fi
 		fi' >> $file_vesta_filemanager
 		chmod +x $file_vesta_filemanager
 		echo "Ativando FileManager..."
@@ -137,15 +139,17 @@ elif [ "$opcao" -eq 3 ]; then
 		a="'${file_emp}'"
 		b="'${file_tex}'"
 
-		if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+		if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
 		then
-		# code if found
-			sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-		elif grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
-		then
-
+			sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
 		else
-			echo $b >> /usr/local/vesta/conf/vesta.conf
+			if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+			then
+			# Encontrou a TAG
+				sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+			else
+				echo $b >> /usr/local/vesta/conf/vesta.conf
+			fi
 		fi' >> $file_vesta_filemanager
 		chmod +x $file_vesta_filemanager
 		echo "Ativando FileManager..."
