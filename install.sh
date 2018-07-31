@@ -13,7 +13,7 @@ echo ' 3 -> Ativar FileManager'
 echo ' 4 -> Cancelar'
 read -p 'Escolha a opção e pressione [ENTER]: ' opcao
 
-elif [[ ! -z "$opcao" ]]; then
+if [[ ! -z "$opcao" ]]; then
 	if [ "$opcao" -eq 1 ]; then
     	echo "Vamos começar a atualização do php7.0 para o php7.1"
     	sudo apt-get update
