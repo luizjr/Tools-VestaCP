@@ -172,11 +172,12 @@ if [[ -n "$opcao" ]]; then
     	fi
     	exit 1
 	elif [ "$opcao" -eq 4 ]; then
-		cd /usr/local/vesta/data/templates/web && git clone https://github.com/luizjrdeveloper/tools-vestacp.git
-		cp -R tools-vestacp/includes/apache2 .
-		cp -R tools-vestacp/includes/nginx .
+		echo "Instalando Templates..."
+		patch_template="/usr/local/vesta/data/templates/web"
+		git clone https://github.com/luizjrdeveloper/tools-vestacp.git
+		cp -R tools-vestacp/includes/apache2 $patch_template
+		cp -R tools-vestacp/includes/nginx $patch_template
 		rm -R tools-vestacp
-		cd ~
 		echo "Templates Instados!"
     	sleep 2
     	exit 1
