@@ -39,75 +39,18 @@ if [[ -n "$opcao" ]]; then
     elif [ "$opcao" -eq 2 ]; then
     	echo "Iniciando a Instalação do SSL..."
     	sleep 1
-    	read -p "Digite o Domínio(url) do VestaCP e pressione [ENTER]: " dominio_vesta
-    	echo "Emitindo Certificado SSL para o Dominío..."
-    	/usr/local/vesta/bin/v-add-letsencrypt-domain admin $dominio_vesta
+		echo "Emitindo Certificado SSL para o Painel VestaCP..."
+    	/usr/local/vesta/bin/v-add-letsencrypt-domain 'admin' $HOSTNAME '' 'yes'
 
-    	file_vesta_ssl="/etc/cron.daily/vesta_ssl"
-    	if [ -f "$file_vesta_ssl" ]; then
-    		echo "Reescrevendo Tarefa Cron"
-    		rm $file_vesta_ssl
-    		echo '	cert_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.pem"
-    		key_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.key"
-    		cert_dst="/usr/local/vesta/ssl/certificate.crt"
-    		key_dst="/usr/local/vesta/ssl/certificate.key"
+		echo "Isso aplicará o SSL instalado aos daemons VestaCP, Exim e Dovecot."
+    	/usr/local/vesta/bin/v-update-host-certificate admin $HOSTNAME
 
-    		if ! cmp -s $cert_dst $cert_src
-    		then
-    		        # Copiando Certificado
-    		        cp $cert_src $cert_dst
+		echo "Isso permitirá que o VestaCP atualize o SSL para os daemons VestaCP, Exim e dovecot toda vez que o SSL for renovado."
+		echo "UPDATE_HOSTNAME_SSL='yes'" >> /usr/local/vesta/conf/vesta.conf
 
-    		        # Copiando Chave
-    		        cp $key_src $key_dst
-
-    		        # Aplicando Permissões
-    		        chown root:mail $cert_dst
-    		        chown root:mail $key_dst
-
-    		        # Reiniciando Serviços
-    		        service vesta restart &> /dev/null
-    		        service exim4 restart &> /dev/null
-
-    		fi' >> $file_vesta_ssl
-
-    		chmod +x $file_vesta_ssl
-    		echo "Ativando SSL para o Dominío..."
-    		bash $file_vesta_ssl
-    		sleep 2
-    		echo "SSL Ativado com Sucesso!"
-    	else
-    		echo '			cert_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.pem"
-    		key_src="/home/admin/conf/web/ssl.'${dominio_vesta}'.key"
-    		cert_dst="/usr/local/vesta/ssl/certificate.crt"
-    		key_dst="/usr/local/vesta/ssl/certificate.key"
-
-    		if ! cmp -s $cert_dst $cert_src
-    		then
-    		        # Copiando Certificado
-    		        cp $cert_src $cert_dst
-
-    		        # Copiando Chave
-    		        cp $key_src $key_dst
-
-    		        # Aplicando Permissões
-    		        chown root:mail $cert_dst
-    		        chown root:mail $key_dst
-
-    		        # Reiniciando Serviços
-    		        service vesta restart &> /dev/null
-    		        service exim4 restart &> /dev/null
-
-    		fi' >> $file_vesta_ssl
-
-    		chmod +x $file_vesta_ssl
-    		echo "Ativando SSL para o Dominío..."
-    		bash $file_vesta_ssl
-    		sleep 2
-    		echo "SSL Ativado com Sucesso!"
-    	fi
-    	sleep 3
+    	sleep 2
+    	echo "SSL Ativado para o Painel com Sucesso!"
     	exit 1
-
 
     # Ativacao do FileManager
     elif [ "$opcao" -eq 3 ]; then
