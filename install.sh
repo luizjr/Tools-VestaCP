@@ -17,26 +17,26 @@ read -p 'Escolha a opção e pressione [ENTER]: ' opcao
 
 if [[ -n "$opcao" ]]; then
 	if [ "$opcao" -eq 1 ]; then
-    	echo "Vamos começar a atualização do php7.0 para o php7.1"
-    	sudo apt-get update
-	sudo apt-get install software-properties-common
-	send yes
-    	sudo apt-get install python-software-properties
-	send yes
-    	sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
-	send "\r"
-    	apt-get update
-    	apt-get install php7.1
-	send yes
-    	a2dismod php7.0
-    	a2enmod php7.1
+		echo "Vamos começar a atualização do php7.0 para o php7.1"
+		sudo apt-get update
+		sudo apt-get install software-properties-common
+		send yes
+		sudo apt-get install python-software-properties
+		send yes
+		sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+		send "\r"
+		apt-get update
+		apt-get install php7.1
+		send yes
+		a2dismod php7.0
+		a2enmod php7.1
 
-    	apt-get install php7.1-common php7.1-zip libapache2-mod-php7.1 php7.1-cgi php7.1-cli php7.1-phpdbg php7.1-fpm libphp7.1-embed php7.1-dev php7.1-curl php7.1-gd php7.1-imap php7.1-interbase php7.1-intl php7.1-ldap php7.1-mcrypt php7.1-readline php7.1-odbc php7.1-pgsql php7.1-pspell php7.1-recode php7.1-tidy php7.1-xmlrpc php7.1 php7.1-json php-all-dev php7.1-sybase php7.1-sqlite3 php7.1-mysql php7.1-opcache php7.1-bz2 libapache2-mod-php7.1 php7.1-mbstring php7.1-pdo php7.1-dom
-	send yes
-    	service apache2 restart
-    	exit 1
+		apt-get install php7.1-common php7.1-zip libapache2-mod-php7.1 php7.1-cgi php7.1-cli php7.1-phpdbg php7.1-fpm libphp7.1-embed php7.1-dev php7.1-curl php7.1-gd php7.1-imap php7.1-interbase php7.1-intl php7.1-ldap php7.1-mcrypt php7.1-readline php7.1-odbc php7.1-pgsql php7.1-pspell php7.1-recode php7.1-tidy php7.1-xmlrpc php7.1 php7.1-json php-all-dev php7.1-sybase php7.1-sqlite3 php7.1-mysql php7.1-opcache php7.1-bz2 libapache2-mod-php7.1 php7.1-mbstring php7.1-pdo php7.1-dom
+		send yes
+		service apache2 restart
+		exit 1
 
-    elif [ "$opcao" -eq 2 ]; then
+	elif [ "$opcao" -eq 2 ]; then
 		echo "Iniciando a Instalação do SSL..."
 		sleep 1
 		echo "Emitindo Certificado SSL para o Painel VestaCP..."
@@ -52,73 +52,73 @@ if [[ -n "$opcao" ]]; then
 		echo "SSL Ativado para o Painel com Sucesso!"
 		exit 1
 
-    # Ativacao do FileManager
-    elif [ "$opcao" -eq 3 ]; then
-    	echo "Iniciando Ativação do FileManager..."
-    	sleep 1
-    	file_vesta_filemanager="/etc/cron.hourly/vesta_filemanager"
-    	file_emp="FILEMANAGER_KEY=''"
-    	file_tex="FILEMANAGER_KEY='ILOVEREO'"
+		# Ativacao do FileManager
+	elif [ "$opcao" -eq 3 ]; then
+		echo "Iniciando Ativação do FileManager..."
+		sleep 1
+		file_vesta_filemanager="/etc/cron.hourly/vesta_filemanager"
+		file_emp="FILEMANAGER_KEY=''"
+		file_tex="FILEMANAGER_KEY='ILOVEREO'"
 
-    	if [ -f "$file_vesta_filemanager" ]; then
-    		echo "Limpando Ativação Anterior..."
-    		rm $file_vesta_filemanager
+		if [ -f "$file_vesta_filemanager" ]; then
+			echo "Limpando Ativação Anterior..."
+			rm $file_vesta_filemanager
 
-    		echo '
-    		#! /bin/bash
-    		#created luizjrdeveloper@gmail.com
-    		#author Luiz Jr
-    		#created 10/03/2018
+			echo '
+			#! /bin/bash
+			#created luizjrdeveloper@gmail.com
+			#author Luiz Jr
+			#created 10/03/2018
 
-    		a="'${file_emp}'"
-    		b="'${file_tex}'"
+			a="'${file_emp}'"
+			b="'${file_tex}'"
 
-    		if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
-    		then
-    			sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
-    		else
-    			if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
-    			then
-    			# Encontrou a TAG
-    				sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-    			else
-    				echo $b >> /usr/local/vesta/conf/vesta.conf
-    			fi
-    		fi' >> $file_vesta_filemanager
-    		chmod +x $file_vesta_filemanager
-    		echo "Ativando FileManager..."
-    		bash $file_vesta_filemanager
-    		sleep 2
-    		echo "FileManager Ativado com Sucesso!"
-    	else
-    		echo '
-    		#! /bin/bash
-    		#created luizjrdeveloper@gmail.com
-    		#author Luiz Jr
-    		#created 10/03/2018
+			if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
+			then
+				sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
+			else
+				if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+				then
+					# Encontrou a TAG
+					sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+				else
+					echo $b >> /usr/local/vesta/conf/vesta.conf
+				fi
+			fi' >> $file_vesta_filemanager
+			chmod +x $file_vesta_filemanager
+			echo "Ativando FileManager..."
+			bash $file_vesta_filemanager
+			sleep 2
+			echo "FileManager Ativado com Sucesso!"
+		else
+			echo '
+			#! /bin/bash
+			#created luizjrdeveloper@gmail.com
+			#author Luiz Jr
+			#created 10/03/2018
 
-    		a="'${file_emp}'"
-    		b="'${file_tex}'"
+			a="'${file_emp}'"
+			b="'${file_tex}'"
 
-    		if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
-    		then
-    			sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
-    		else
-    			if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
-    			then
-    			# Encontrou a TAG
-    				sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
-    			else
-    				echo $b >> /usr/local/vesta/conf/vesta.conf
-    			fi
-    		fi' >> $file_vesta_filemanager
-    		chmod +x $file_vesta_filemanager
-    		echo "Ativando FileManager..."
-    		bash $file_vesta_filemanager
-    		sleep 2
-    		echo "FileManager Ativado com Sucesso!"
-    	fi
-    	exit 1
+			if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
+			then
+				sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
+			else
+				if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+				then
+					# Encontrou a TAG
+					sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+				else
+					echo $b >> /usr/local/vesta/conf/vesta.conf
+				fi
+			fi' >> $file_vesta_filemanager
+			chmod +x $file_vesta_filemanager
+			echo "Ativando FileManager..."
+			bash $file_vesta_filemanager
+			sleep 2
+			echo "FileManager Ativado com Sucesso!"
+		fi
+		exit 1
 	elif [ "$opcao" -eq 4 ]; then
 		echo "Instalando Templates..."
 		patch_template="/usr/local/vesta/data/templates/web"
@@ -127,12 +127,12 @@ if [[ -n "$opcao" ]]; then
 		cp -R tools-vestacp/includes/nginx $patch_template
 		rm -R tools-vestacp
 		echo "Templates Instados!"
-    	sleep 2
-    	exit 1
+		sleep 2
+		exit 1
 	elif [ "$opcao" -eq 5 ]; then
-    	echo "Cancelando a ativação..."
-    	sleep 3
-    	exit 1
+		echo "Cancelando a ativação..."
+		sleep 3
+		exit 1
 	else
 		echo "Opção inválida"
 		exit 0
