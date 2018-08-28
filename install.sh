@@ -37,20 +37,20 @@ if [[ -n "$opcao" ]]; then
     	exit 1
 
     elif [ "$opcao" -eq 2 ]; then
-    	echo "Iniciando a Instalação do SSL..."
-    	sleep 1
+		echo "Iniciando a Instalação do SSL..."
+		sleep 1
 		echo "Emitindo Certificado SSL para o Painel VestaCP..."
-    	/usr/local/vesta/bin/v-add-letsencrypt-domain 'admin' $HOSTNAME '' 'yes'
+		/usr/local/vesta/bin/v-add-letsencrypt-domain 'admin' $HOSTNAME '' 'yes'
 
 		echo "Isso aplicará o SSL instalado aos daemons VestaCP, Exim e Dovecot."
-    	/usr/local/vesta/bin/v-update-host-certificate admin $HOSTNAME
+		/usr/local/vesta/bin/v-update-host-certificate admin $HOSTNAME
 
 		echo "Isso permitirá que o VestaCP atualize o SSL para os daemons VestaCP, Exim e dovecot toda vez que o SSL for renovado."
 		echo "UPDATE_HOSTNAME_SSL='yes'" >> /usr/local/vesta/conf/vesta.conf
 
-    	sleep 2
-    	echo "SSL Ativado para o Painel com Sucesso!"
-    	exit 1
+		sleep 2
+		echo "SSL Ativado para o Painel com Sucesso!"
+		exit 1
 
     # Ativacao do FileManager
     elif [ "$opcao" -eq 3 ]; then
