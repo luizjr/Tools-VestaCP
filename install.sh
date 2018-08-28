@@ -10,7 +10,7 @@ echo '======'
 echo ' 1 -> Atualizar php7.0 para php7.1'
 echo ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
 echo ' 3 -> Ativar FileManager'
-echo ' 4 -> Instalar Templates Laravel e ReactJS'
+echo ' 4 -> Instalar Templates Laravel, ReactJS e HTTPS'
 echo ' 5 -> Sair'
 
 read -p 'Escolha a opção e pressione [ENTER]: ' opcao
