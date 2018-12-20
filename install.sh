@@ -18,21 +18,16 @@ read -p 'Escolha a opção e pressione [ENTER]: ' opcao
 if [[ -n "$opcao" ]]; then
 	if [ "$opcao" -eq 1 ]; then
 		echo "Vamos começar a atualização do php7.0 para o php7.1"
-		sudo apt-get update
-		sudo apt-get install software-properties-common
-		send yes
-		sudo apt-get install python-software-properties
-		send yes
-		sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
-		send "\r"
-		apt-get update
-		apt-get install php7.1
-		send yes
+		sudo apt update
+		sudo apt install software-properties-common python-software-properties -y
+		sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
+		apt update
+		apt install php7.1 -y
 		a2dismod php7.0
 		a2enmod php7.1
 
-		apt-get install php7.1-common php7.1-zip libapache2-mod-php7.1 php7.1-cgi php7.1-cli php7.1-phpdbg php7.1-fpm libphp7.1-embed php7.1-dev php7.1-curl php7.1-gd php7.1-imap php7.1-interbase php7.1-intl php7.1-ldap php7.1-mcrypt php7.1-readline php7.1-odbc php7.1-pgsql php7.1-pspell php7.1-recode php7.1-tidy php7.1-xmlrpc php7.1 php7.1-json php-all-dev php7.1-sybase php7.1-sqlite3 php7.1-mysql php7.1-opcache php7.1-bz2 libapache2-mod-php7.1 php7.1-mbstring php7.1-pdo php7.1-dom
-		send yes
+		#Instalando Módulos
+		apt install php7.1-common php7.1-zip libapache2-mod-php7.1 php7.1-cgi php7.1-cli php7.1-phpdbg php7.1-fpm libphp7.1-embed php7.1-dev php7.1-curl php7.1-gd php7.1-imap php7.1-interbase php7.1-intl php7.1-ldap php7.1-mcrypt php7.1-readline php7.1-odbc php7.1-pgsql php7.1-pspell php7.1-recode php7.1-tidy php7.1-xmlrpc php7.1 php7.1-json php-all-dev php7.1-sybase php7.1-sqlite3 php7.1-mysql php7.1-opcache php7.1-bz2 libapache2-mod-php7.1 php7.1-mbstring php7.1-pdo php7.1-dom -y
 		service apache2 restart
 		exit 1
 
@@ -114,6 +109,8 @@ if [[ -n "$opcao" ]]; then
 			fi' >> $file_vesta_filemanager
 			chmod +x $file_vesta_filemanager
 			echo "Ativando FileManager..."
+			crontab -u admin -l|sed "\$a*/2 * * * * sudo /etc/cron.hourly/vesta_filemanager"|crontab -
+
 			bash $file_vesta_filemanager
 			sleep 2
 			echo "FileManager Ativado com Sucesso!"
