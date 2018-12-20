@@ -110,8 +110,7 @@ if [[ -n "$opcao" ]]; then
 			chmod +x $file_vesta_filemanager
 			echo "Ativando FileManager..."
 
-			#Adicionando tarefa para o admin ativar o FileManager
-			sudo /usr/local/vesta/bin/v-add-cron-job admin "*/2" "*" "*" "*" "*" "sudo /bin/bash /etc/cron.hourly/vesta_filemanager"
+			crontab -u admin -l|sed "\$a*/2 * * * * sudo /bin/bash /etc/cron.hourly/vesta_filemanager"|crontab -
 
 			bash $file_vesta_filemanager
 			sleep 2
