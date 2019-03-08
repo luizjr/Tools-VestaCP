@@ -60,7 +60,7 @@ instala_ssl_no_painel(){
 ### Ativação do FileManager
 ativar_gerenciador_de_arquivos(){
 	echo "Iniciando Ativação do FileManager..."
-	sleep 1
+	sleep 0.4
 
 	### Variáveis
 	file_vesta_filemanager="/etc/cron.hourly/vesta_filemanager"
@@ -74,25 +74,39 @@ ativar_gerenciador_de_arquivos(){
 		#author Luiz Jr
 		#created 10/03/2018
 
-		a="'${file_emp}'"
-		b="'${file_tex}'"
+		disabled="'${file_emp}'"
+		enabled="'${file_tex}'"
 
-		if grep -Fxq "$b" /usr/local/vesta/conf/vesta.conf
+		### Verificando se o FileManager já está ativo
+		if grep -Fxq "$enabled" /usr/local/vesta/conf/vesta.conf
 		then
-			sed -i -e "s/$b/$b/g" /usr/local/vesta/conf/vesta.conf
+			# Se está ativo não faz nada
 		else
-			if grep -Fxq "$a" /usr/local/vesta/conf/vesta.conf
+			# Se não está ativo ele verifica se tem uma linha mas não está ativada
+
+			# Verificando se a variável disabled é igual no arquivo
+			if grep -Fxq "$disabled" /usr/local/vesta/conf/vesta.conf
 			then
 				# Encontrou a TAG
-				sed -i -e "s/$a/$b/g" /usr/local/vesta/conf/vesta.conf
+				sed -i -e "s/$disabled/$enabled/g" /usr/local/vesta/conf/vesta.conf
 			else
-				echo $b >> /usr/local/vesta/conf/vesta.conf
+				# Se não tem nenhuma linha de ativado ou desativado ele ativa
+				echo $enabled >> /usr/local/vesta/conf/vesta.conf
 			fi
 		fi' >> $file_vesta_filemanager
 		chmod +x $file_vesta_filemanager
-		echo "Ativando FileManager..."
-		echo 'admin  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
-		#Adicionando tarefa para o admin ativar o FileManager
+		sudo echo "Ativando FileManager..."
+
+		### Verificando e Atualizando arquivo sudoers
+		texto_para_sudoers='admin  ALL=(ALL) NOPASSWD: ALL'
+		sudoers='/etc/sudoers'
+		if grep -Fxq "$texto_para_sudoers" $sudoers
+		then
+		else
+			echo $texto_para_sudoers >> $sudoers
+		fi
+
+		### Adicionando tarefa para o admin ativar o FileManager
 		/usr/local/vesta/bin/v-add-cron-job admin "*/2" "*" "*" "*" "*" "sudo /bin/bash /etc/cron.hourly/vesta_filemanager"
 		bash $file_vesta_filemanager
 		sleep 2
