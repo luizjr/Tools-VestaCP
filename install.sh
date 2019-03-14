@@ -8,16 +8,16 @@ menu(){
 	### Limpando o Terminal
 	clear
 	### Escrevendo menu na tela
-	echo '=========================================='
-	echo 'Bem Vindo ao Canivete Suíço do VestaCP'
-	echo '=========================================='
-	echo ' 1 -> Atualizar php7.0 para php7.1'
-	echo ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
-	echo ' 3 -> Ativar FileManager'
-	echo ' 4 -> Instalar Templates Laravel, ReactJS e HTTPS'
-	echo ' 5 -> Todas as Opções'
-	echo ' 6 -> Sair'
-	echo '============================== By Luiz Jr'
+	print '=========================================='
+	print 'Bem Vindo ao Canivete Suíço do VestaCP'
+	print '=========================================='
+	print ' 1 -> Atualizar php7.0 para php7.1'
+	print ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
+	print ' 3 -> Ativar FileManager'
+	print ' 4 -> Instalar Templates Laravel, ReactJS e HTTPS'
+	print ' 5 -> Todas as Opções'
+	print ' 6 -> Sair'
+	print '============================== By Luiz Jr'
 	### Aguardando Input do Usuário
 	### Aguardando a opção ser selecionada
 	read -p 'Escolha a opção e pressione [ENTER]: ' opcao
@@ -25,7 +25,7 @@ menu(){
 
 ### Atualização do php7.0 para o php7.1
 atualizacao_php71(){
-	echo "Vamos começar a atualização do php7.0 para o php7.1"
+	print "Vamos começar a atualização do php7.0 para o php7.1"
 	# Atualizando Pacotes e preparando sistema
 	sudo apt update
 	sudo apt install software-properties-common python-software-properties -y
@@ -42,15 +42,15 @@ atualizacao_php71(){
 
 ### Instala Certificado SSL para o Painel VestaCP
 instala_ssl_no_painel(){
-	echo "Iniciando a Instalação do SSL..."
+	print "Iniciando a Instalação do SSL..."
 	sleep 1
-	echo "Emitindo Certificado SSL para o Painel VestaCP..."
+	print "Emitindo Certificado SSL para o Painel VestaCP..."
 	/usr/local/vesta/bin/v-add-letsencrypt-domain 'admin' $HOSTNAME '' 'yes'
 
-	echo "Isso aplicará o SSL instalado aos daemons VestaCP, Exim e Dovecot."
+	print "Isso aplicará o SSL instalado aos daemons VestaCP, Exim e Dovecot."
 	/usr/local/vesta/bin/v-update-host-certificate admin $HOSTNAME
 
-	echo "Isso permitirá que o VestaCP atualize o SSL para os daemons VestaCP, Exim e dovecot toda vez que o SSL for renovado."
+	print "Isso permitirá que o VestaCP atualize o SSL para os daemons VestaCP, Exim e dovecot toda vez que o SSL for renovado."
 	echo "UPDATE_HOSTNAME_SSL='yes'" >> /usr/local/vesta/conf/vesta.conf
 
 	sleep 2
@@ -59,7 +59,7 @@ instala_ssl_no_painel(){
 
 ### Ativação do FileManager
 ativar_gerenciador_de_arquivos(){
-	echo "Iniciando Ativação do FileManager..."
+	print "Iniciando Ativação do FileManager..."
 	sleep 0.4
 
 	### Variáveis
@@ -109,12 +109,12 @@ ativar_gerenciador_de_arquivos(){
 		/usr/local/vesta/bin/v-add-cron-job admin "*/2" "*" "*" "*" "*" "sudo /bin/bash /etc/cron.hourly/vesta_filemanager"
 		bash $file_vesta_filemanager
 		sleep 2
-		echo "FileManager Ativado com Sucesso!"
+		print "FileManager Ativado com Sucesso!"
 	}
 
 	### Verifica se é uma reinistalação ou uma nova instalçao
 	if [ -f "$file_vesta_filemanager" ]; then
-		echo "Limpando Ativação Anterior..."
+		print "Limpando Ativação Anterior..."
 		rm $file_vesta_filemanager
 		ativa_file_manager
 	else
@@ -123,13 +123,13 @@ ativar_gerenciador_de_arquivos(){
 }
 
 instala_templates_vestacp(){
-	echo "Instalando Templates..."
+	print "Instalando Templates..."
 	patch_template="/usr/local/vesta/data/templates/web"
 	git clone https://github.com/luizjrdeveloper/tools-vestacp.git
 	cp -R tools-vestacp/includes/apache2 $patch_template
 	cp -R tools-vestacp/includes/nginx $patch_template
 	rm -R tools-vestacp
-	echo "Templates Instados!"
+	print "Templates Instados!"
 }
 
 opcoes(){
