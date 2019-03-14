@@ -100,8 +100,7 @@ ativar_gerenciador_de_arquivos(){
 		### Verificando e Atualizando arquivo sudoers
 		texto_para_sudoers='admin  ALL=(ALL) NOPASSWD: ALL'
 		sudoers='/etc/sudoers'
-		if grep -Fxq "$texto_para_sudoers" $sudoers
-		then
+		if grep -Fxq "$texto_para_sudoers" $sudoers; then
 		else
 			echo $texto_para_sudoers >> $sudoers
 		fi
