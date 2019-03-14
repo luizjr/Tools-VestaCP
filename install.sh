@@ -78,10 +78,7 @@ ativar_gerenciador_de_arquivos(){
 		enabled="'${file_tex}'"
 
 		### Verificando se o FileManager já está ativo
-		if grep -Fxq "$enabled" /usr/local/vesta/conf/vesta.conf
-		then
-			# Se está ativo não faz nada
-		else
+		if ! grep -Fxq "$enabled" /usr/local/vesta/conf/vesta.conf; then
 			# Se não está ativo ele verifica se tem uma linha mas não está ativada
 
 			# Verificando se a variável disabled é igual no arquivo
