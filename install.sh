@@ -176,6 +176,7 @@ opcoes(){
 
 sair_ou_continuar(){
 	### Limpando o Terminal
+	sleep 2
 	clear
 	### Escrevendo menu na tela
 	echo 'Deseja realmente sair?'
