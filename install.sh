@@ -203,8 +203,16 @@ sair(){
 	clear && echo "Fechando a aplicação..." && sleep 1 && clear
 	exit
 }
+am_i_root(){
+	# Am I root?
+	if [ "x$(id -u)" != 'x0' ]; then
+		echo 'Erro: este script só pode ser executado pelo usuário root'
+		exit 1
+	fi
+}
 
 aplicacao(){
+	am_i_root
 	menu
 	opcoes
 }
