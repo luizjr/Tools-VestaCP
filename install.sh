@@ -2,6 +2,7 @@
 #created luizjrdeveloper@gmail.com
 #author Luiz Jr
 #created 10/03/2018
+#last updated 31/03/2019
 
 ### Menu da aplicação
 menu(){
@@ -11,7 +12,7 @@ menu(){
 	echo '=========================================='
 	echo 'Bem Vindo ao Canivete Suíço do VestaCP'
 	echo '=========================================='
-	echo ' 1 -> Atualizar php7.0 para php7.1'
+	echo ' 1 -> Atualizar php7.0 para php7.1 (Debian Based)'
 	echo ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
 	echo ' 3 -> Ativar FileManager'
 	echo ' 4 -> Instalar Templates Laravel, ReactJS e HTTPS'
