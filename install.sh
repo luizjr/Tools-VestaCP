@@ -124,9 +124,9 @@ instala_templates_vestacp(){
 	echo "Instalando Templates..."
 	patch_template="/usr/local/vesta/data/templates/web"
 	git clone https://github.com/luizjrdeveloper/Tools-VestaCP.git
-	cp -R tools-vestacp/includes/apache2 $patch_template
-	cp -R tools-vestacp/includes/nginx $patch_template
-	rm -R tools-vestacp
+	cp -R Tools-VestaCP/includes/apache2 $patch_template
+	cp -R Tools-VestaCP/includes/nginx $patch_template
+	rm -R Tools-VestaCP
 	echo "Templates Instados!"
 }
 
