@@ -13,7 +13,7 @@ ssh root@your.server
 # Instalação Automática
 
 ```sh
-bash <(curl -s https://raw.githubusercontent.com/luizjr/Tools-VestaCP/master/install.sh)
+bash <(curl -s https://raw.github.com/luizjr/Tools-VestaCP/master/install.sh)
 ```
 
 # Instalação Manual
