@@ -1,8 +1,8 @@
 #! /bin/bash
-#created luizjrdeveloper@gmail.com
+#created lj@luizjr.dev
 #author Luiz Jr
 #created 10/03/2018
-#last updated 31/03/2019
+#last updated 02/04/2019
 
 ### Menu da aplicação
 menu(){
@@ -71,7 +71,7 @@ ativar_gerenciador_de_arquivos(){
 	ativa_file_manager(){
 		echo '
 		#! /bin/bash
-		#created luizjrdeveloper@gmail.com
+		#created luizjr@gmail.com
 		#author Luiz Jr
 		#created 10/03/2018
 
@@ -123,7 +123,7 @@ ativar_gerenciador_de_arquivos(){
 instala_templates_vestacp(){
 	echo "Instalando Templates..."
 	patch_template="/usr/local/vesta/data/templates/web"
-	git clone https://github.com/luizjrdeveloper/Tools-VestaCP.git
+	git clone https://github.com/luizjr/Tools-VestaCP.git
 	cp -R Tools-VestaCP/includes/apache2 $patch_template
 	cp -R Tools-VestaCP/includes/nginx $patch_template
 	rm -R Tools-VestaCP
