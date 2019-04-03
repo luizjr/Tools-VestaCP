@@ -6,20 +6,28 @@ Para solicitar mais **templates** basta iniciar um [Issue no GitHub](https://git
 
 ## Primeiro faça login no servidor via ssh como root * (Obrigatório)
 Exemplo:
-`ssh root@your.server`
+```sh
+ssh root@your.server
+```
 
 # Instalação Automática
 
-`bash <(curl -s https://raw.githubusercontent.com/luizjr/Tools-VestaCP/master/install.sh)`
+```sh
+bash <(curl -s https://raw.githubusercontent.com/luizjr/Tools-VestaCP/master/install.sh)
+```
 
 # Instalação Manual
 
 #### Copiando este Repositório
 
-`git clone https://github.com/luizjr/Tools-VestaCP.git`  
-`cd tools-vestacp`  
-`bash install.sh`
+```sh
+git clone https://github.com/luizjr/Tools-VestaCP.git`  
+cd tools-vestacp
+bash install.sh
+```
 
 #### Limpando instalação
 
-`cd .. && rm -rf Tools-VestaCP`
+```sh
+cd .. && rm -rf Tools-VestaCP
+```
