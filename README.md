@@ -6,6 +6,7 @@ Para solicitar mais **templates** basta iniciar um [Issue no GitHub](https://git
 
 ## Primeiro faça login no servidor via ssh como root * (Obrigatório)
 Exemplo:
+
 ```sh
 ssh root@your.server
 ```
@@ -21,7 +22,7 @@ bash <(curl -s https://raw.github.com/luizjr/Tools-VestaCP/master/install.sh)
 #### Copiando este Repositório
 
 ```sh
-git clone https://github.com/luizjr/Tools-VestaCP.git`  
+git clone https://github.com/luizjr/Tools-VestaCP.git
 cd tools-vestacp
 bash install.sh
 ```
