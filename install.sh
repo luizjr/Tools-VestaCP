@@ -16,8 +16,9 @@ menu(){
 	echo ' 2 -> Instalar SSL para VestaCP Painel e E-mail'
 	echo ' 3 -> Ativar FileManager'
 	echo ' 4 -> Instalar Templates Laravel, ReactJS e HTTPS'
-	echo ' 5 -> Todas as Opções'
-	echo ' 6 -> Sair'
+	echo ' 5 -> Corrigir config e storage no phpMyAdmin'
+	echo ' 6 -> Todas as Opções'
+	echo ' 7 -> Sair'
 	echo '============================== By Luiz Jr'
 	### Aguardando Input do Usuário
 	### Aguardando a opção ser selecionada
@@ -130,6 +131,10 @@ instala_templates_vestacp(){
 	echo "Templates Instados!"
 }
 
+phpMyAdmin_Fixer(){
+	bash <(curl -s https://raw.github.com/luizjr/phpMyAdmin-Fixer-VestaCP/master/pma.sh)
+}
+
 opcoes(){
 	### Verifica a opção selecionada no menu
 	if [[ -n "$opcao" ]]; then
@@ -154,8 +159,13 @@ opcoes(){
 			instala_templates_vestacp
 			sair_ou_continuar
 
-		# Todas as opções
+		# Corrigindo phpMyAdmin para o VestaCP
 		elif [ "$opcao" -eq 5 ]; then
+			phpMyAdmin_Fixer
+			sair_ou_continuar
+
+		# Todas as opções
+		elif [ "$opcao" -eq 6 ]; then
 			atualizacao_php71
 			instala_ssl_no_painel
 			ativar_gerenciador_de_arquivos
@@ -163,7 +173,7 @@ opcoes(){
 			sair_ou_continuar
 
 		# Fecha a aplicação
-		elif [ "$opcao" -eq 6 ]; then
+		elif [ "$opcao" -eq 7 ]; then
 			sair
 		else
 			clear && echo "Opção inválida" && sleep 0.5 && clear
