@@ -132,7 +132,7 @@ instala_templates_vestacp(){
 }
 
 phpMyAdmin_Fixer(){
-	bash <(curl -s https://raw.github.com/luizjr/phpMyAdmin-Fixer-VestaCP/master/pma.sh)
+	bash <(curl -s https://raw.githubusercontent.com/luizjr/phpMyAdmin-Fixer-VestaCP/master/pma.sh)
 }
 
 opcoes(){
